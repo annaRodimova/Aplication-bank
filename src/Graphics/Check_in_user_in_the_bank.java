@@ -10,12 +10,13 @@ public class Check_in_user_in_the_bank {
         frame_chec_in.getContentPane().setBackground(new Color(0xC8DCDC));
         frame_chec_in.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame_chec_in.setLayout(null);
-        frame_chec_in.setVisible(true);
+
         Components_Check_in_user_in_the_bank components_check_in_user_in_the_bank = new Components_Check_in_user_in_the_bank();
 
         for (int i = 0; i < components_check_in_user_in_the_bank.return_array().size(); i++) {
             frame_chec_in.add(components_check_in_user_in_the_bank.return_array().get(i));
 
         }
+        frame_chec_in.setVisible(true);
     }
 }

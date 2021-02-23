@@ -10,6 +10,12 @@ import java.util.ArrayList;
 
 public class Components_Check_in_user_in_the_bank {
     ArrayList<Component> components_array = new ArrayList<>();
+    private JTextField textField_Password;
+
+    public String getPassword () {
+        return textField_Password.getText();
+    }
+
     public Components_Check_in_user_in_the_bank() {
         JTextField textFiel_Name = new JTextField("Name");
         textFiel_Name.setBounds(75, 200, 150, 30);
@@ -17,7 +23,7 @@ public class Components_Check_in_user_in_the_bank {
         textField_Surname.setBounds(225, 200, 150, 30);
         JTextField textField_Patronymic =  new JTextField("Patronymic");
         textField_Patronymic.setBounds(75, 250, 150, 20);
-        JTextField textField_Password =  new JTextField("Password");
+        textField_Password =  new JTextField("Password");
         textField_Password.setBounds(225, 250, 150, 20);
 
 
@@ -32,6 +38,9 @@ public class Components_Check_in_user_in_the_bank {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Users user = new Users(textFiel_Name.getText(), textField_Surname.getText(), textField_Patronymic.getText(), textField_Password.getText());
+
+                new Create_score().create_score();
+
                 try {
                     user.new_user(user);
                 } catch (SQLException throwables) {
