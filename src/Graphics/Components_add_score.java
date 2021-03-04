@@ -8,12 +8,12 @@ import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Components_Create_score {
+public class Components_add_score {
     ArrayList<Component> components_array = new ArrayList<>();
 
-    public Components_Create_score() {
+    public Components_add_score() {
         JTextField textFiel_open_score = new JTextField("new Score");
-        textFiel_open_score.setBounds(185, 100, 150, 30);
+        textFiel_open_score.setBounds(140, 50, 200, 30);
         JTextArea textField = new JTextArea("Заявление на открытие счета карты.Условия банковского обслуживания физических лиц ПАО Сбербанк\n" +
                 "(вступают в силу с 15.03.2021)\n" +
                 "1. ОБЩИЕ ПОЛОЖЕНИЯ\n" +
@@ -28,48 +28,62 @@ public class Components_Create_score {
                 "и является документом, подтверждающим факт заключения ДБО.\n" +
                 "ДБО может быть заключен с использованием Аналога собственноручной подписи/электронной подписи\n" +
                 "Клиента, если это предусмотрено иным договором, ранее заключенным между Клиентом и Банком.");
-        textField.setBounds(100, 150, 200, 100);
-        JCheckBox jCheckBox_no = new JCheckBox("No");
-        jCheckBox_no.setBounds(260, 210, 40, 10);
-        JCheckBox jCheckBox_yes = new JCheckBox("Yes");
-        jCheckBox_yes.setBounds(260, 260, 40, 10);
+        textField.setBounds(35, 100, 410, 250);
+        JCheckBox jCheckBox_no = new JCheckBox("Yes");
+        jCheckBox_no.setBounds(245, 360, 100, 30);
+        JCheckBox jCheckBox_yes = new JCheckBox("No");
+        jCheckBox_yes.setBounds(135, 360, 100, 30);
 
-        JButton EXIT_IN_BANK =  new JButton("Exit in the bank");
-        EXIT_IN_BANK.setBackground(new Color(0x5DBFBF));
-        EXIT_IN_BANK.setBounds(5, 400, 110, 50);
+        JButton back = new JButton("<-Back");
+        back.setBackground(new Color(0xDBD5B1));
+        back.setBounds(5, 400, 110, 50);
+
+        back.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new Home().home();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                } catch (ClassNotFoundException classNotFoundException) {
+                    classNotFoundException.printStackTrace();
+                }
+            }
+
+        });
 
         JButton Save = new JButton("Save");
         Save.setBackground(new Color(0x5DBFBF));
-        Save.setBounds(350, 400, 110, 50);
+        Save.setBounds(363, 400, 110, 50);
 
         components_array.add(textFiel_open_score);
-        components_array.add(EXIT_IN_BANK);
+        components_array.add(back);
         components_array.add(textField);
         components_array.add(jCheckBox_no);
         components_array.add(jCheckBox_yes);
         components_array.add(Save);
-
-        EXIT_IN_BANK.addActionListener(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new Identification().identifications();
-            }
-        });
 
         Save.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    Components_Check_in_user_in_the_bank new_user = new Components_Check_in_user_in_the_bank();
-                    Users users =  new Users();
-                    textFiel_open_score.setText(String.valueOf(users.add_score(new_user.getPassword())));
+                    //if (jCheckBox_no.getText().equals(null)) {
 
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                } catch (ClassNotFoundException classNotFoundException) {
-                    classNotFoundException.printStackTrace();
-                }
+                        Users users = new Users();
+                        textFiel_open_score.setText(String.valueOf(users.add_score(new Components_identification().getPassword())));
+                   // }
+                    /*else {
+                        String text = "Для открытия счета, необходимо подписать заявление";
+                        JOptionPane.showMessageDialog(null, text);
+                    }*/
+
+                    } catch(SQLException throwables){
+                        throwables.printStackTrace();
+                    } catch(ClassNotFoundException classNotFoundException){
+                        classNotFoundException.printStackTrace();
+                    }
+
             }
         });
     }

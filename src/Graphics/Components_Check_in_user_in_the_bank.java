@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Components_Check_in_user_in_the_bank {
     ArrayList<Component> components_array = new ArrayList<>();
-    private JTextField textField_Password;
+    private static JTextField textField_Password = new JTextField("Password");
 
     public String getPassword () {
         return textField_Password.getText();
@@ -23,7 +23,6 @@ public class Components_Check_in_user_in_the_bank {
         textField_Surname.setBounds(225, 200, 150, 30);
         JTextField textField_Patronymic =  new JTextField("Patronymic");
         textField_Patronymic.setBounds(75, 250, 150, 20);
-        textField_Password =  new JTextField("Password");
         textField_Password.setBounds(225, 250, 150, 20);
 
 
